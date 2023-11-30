@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        #slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #image-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-image {
+            width: 100%;
+            height: 100%;
+        }
+
+        #left-arrow, #right-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #left-arrow {
+            left: 10px;
+        }
+
+        #right-arrow {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="slider-container">
+    <div id="image-slider">
+        <img class="slider-image" src="./1.png" alt="Image 1">
+        <img class="slider-image" src="./2.png" alt="Image 2">
+        <img class="slider-image" src="./3.png" alt="Image 3">
+        <img class="slider-image" src="./4.png" alt="Image 4">
+        <img class="slider-image" src="./5.png" alt="Image 5">
+        <img class="slider-image" src="./6.png" alt="Image 6">
+    </div>
+    <div id="left-arrow">&lt;</div>
+    <div id="right-arrow">&gt;</div>
+</div>
+
+<script>
+    const slider = document.getElementById('image-slider');
+    const leftArrow = document.getElementById('left-arrow');
+    const rightArrow = document.getElementById('right-arrow');
+
+    let currentIndex = 0;
+
+    leftArrow.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+        }
+    });
+
+    rightArrow.addEventListener('click', () => {
+        if (currentIndex < 5) {
+            currentIndex++;
+            updateSlider();
+        }
+    });
+
+    function updateSlider() {
+        const translateValue = -currentIndex * 100;
+        slider.style.transform = `translateX(${translateValue}%)`;
+    }
+</script>
+
+</body>
+</html>
